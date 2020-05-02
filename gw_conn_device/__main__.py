@@ -83,14 +83,17 @@ def main() -> int:
 
     if env == 'prod':
         #Todo/Logging system 셋팅
+        pass
     elif env == 'test':
         #Todo/Logging system 셋팅
+        pass
     elif env == 'dev':
         #Todo/Logging system 셋팅
+        pass
 
     try:
         _LOGGER.info("===== Start Server =====")
-        dcStatusThread()
+        #dcStatusThread()
         app.run(host="localhost", port="8080")
     except KeyboardInterrupt:
         sys.exit(0)

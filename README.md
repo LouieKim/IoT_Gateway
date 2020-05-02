@@ -20,3 +20,4 @@ AWS IoT Core는 Device가 쉽고 안전하게 Cloud Application 및 다른 Devic
 G/W Platform 에서는 위의 내용을 근거하여 AWS IoT Core를 사용하였고 비용은 5 GB 당 1.2 USD 이기 때문에 Device 하나 기준으로 약 19년 동안 사용하면 1.2 USD 이기에 현재는 거의 무료로 사용할 수 있다고 할 수 있다.
 AWS IoT Core는 Device와의 통신을 IoT MQTT protocol를 사용하고 있으며 받은 데이터들 또는 전달해주어야 하는 데이터들은 MQTT Broker가 Subscript 하고 있는 대상자에게 메시지를 전달하는 역할을 한다.
 Device로부터 메시지가 올라올 경우 AWS IoT Core는 Rule의해 전달된 메시지에 따라 Lambda에 전달을 하고 Lambda는 ninewatt에서 개발한 내용에 따라 데이터들을 DynamoDB에 계속 저장을 하게 되며 3rd Party Platform에서는 저장된 데이터를 활용하여 사용자에게 제공할 수 있다. 그리고 3rd Party Platform으로써 제어 명령이 내려온다면 API Gateway를 통하여 Lambda에서 MQTT broker에게 메시지를 전달한다. MQTT broker는 해당 메시지를 Subscript 하는 Device에게 전달해줌으로써 Device는 메시지를 받고 제어 명령을 수행할 수 있다. 다시 말해서 AWS IoT Core를 통하여 원격에서 Device의 모니터링과 제어를 할 수 있다.
+Reference: https://gist.github.com/ihoneymon/652be052a0727ad59601
