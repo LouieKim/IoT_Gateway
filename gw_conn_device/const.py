@@ -1,9 +1,6 @@
 # coding=utf-8
 # python 3.6
 
-CONVERT_HIGHCODE = ['f', 'e', 'd', 'c', 'b', 'a', '9', '8', '7', '6', '5', '4', '3', '2', '1', '0']
-CONVERT_LOWCODE = ['c', 'd', 'e', 'f', '8', '9', 'a', 'b', '4', '5', '6', '7', '0', '1', '2', '3']
-
 SAMIN747_START_PACKET = "55aaaaaa0103060000"
 SAMIN747_TARGETPOWER_START = 18
 SAMIN747_TARGETPOWER_END = 22
