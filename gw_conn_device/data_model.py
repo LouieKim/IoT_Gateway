@@ -22,9 +22,6 @@ def receiveMsg():
     try:
         result = {}
         recvData = oSocketNetwork.socket_receive()
-        targetPower = int(recvData[SAMIN747_TARGETPOWER_START:SAMIN747_TARGETPOWER_END], 16)
-        predictPower = int(recvData[SAMIN747_PREDICTPOWER_START:SAMIN747_PREDICTPOWER_END], 16)
-        currentPower = int(recvData[SAMIN747_CURRENTPOWER_START:SAMIN747_CURRENTPOWER_END], 16)
         
         result = {'targetPower' : targetPower, 'predictPower' : predictPower, 'currentPower' : currentPower}
 
@@ -35,24 +32,7 @@ def receiveMsg():
     return result
 
 def assemble_data(targetPower):
-    tempRecvData = oSocketNetwork.socket_receive()
-    strRecvData = tempRecvData[SAMIN747_SPLIT_INDEX01:SAMIN747_SPLIT_INDEX02]
-    hex01TargetPower, hex02TargetPower = dec2hexPeakvalue(targetPower)
-    strRecvData = hex01TargetPower + hex02TargetPower + strRecvData
-    
-    #Edit control data, remove some bytes and insert others bytes
-    strControlData = strRecvData[:-22] + "3c00" + strRecvData[-18:-10] + "0f" + strRecvData[-8:]
-    binaryPostfix = text2binary(strControlData)
-
-    lrc = 0
-    for i in binaryPostfix:
-        lrc ^= i
-    calc = format(lrc, '02x')
-
-    secureCode1 = CONVERT_HIGHCODE[int(calc[0], 16)]
-    secureCode2 = CONVERT_LOWCODE[int(calc[1], 16)]
-    binarySecureCode = text2binary(secureCode1 + secureCode2)
-    result = SAMIN747_SEND_DEVICE_MODEL + binaryPostfix + binarySecureCode
+    #Data
     return result
 
 def sendMsg(msg):
