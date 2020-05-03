@@ -1,7 +1,7 @@
 FROM python:3.7-slim
 WORKDIR /app
 COPY . /app
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+RUN python3 -m pip install --trusted-host pypi.python.org -r requirements.txt
 EXPOSE 80
 ENV NAME World
-CMD ["python", "__main__.py"]
+CMD ["python3", "__main__.py"]
