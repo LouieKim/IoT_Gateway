@@ -5,7 +5,6 @@ import sys
 import os
 import time
 import platform
-import setproctitle
 import logging
 from logging import handlers
 import threading
@@ -77,7 +76,8 @@ def main() -> int:
     validate_python()
 
     if os.name == 'posix' : #Linux
-        setproctitle.setproctitle('gw_conn_device')
+        #setproctitle.setproctitle('gw_conn_device')
+        print("Linux")
 
     env = sys.argv[1] if len(sys.argv) >= 2 else 'prod'
 
